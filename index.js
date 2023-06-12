@@ -1,17 +1,25 @@
+// -----add express------------
 const express = require("express");
-const { json } = require('express');
 const app = express();
 
 
-const cors = require('cors');
-app.use(cors());
+// ---------add json-------------
+const { json } = require('express');
 app.use(json());
 
-require('./DB/Connection')
+
+// ------add cors-----------
+const cors = require('cors');
+app.use(cors());
+
+require('./DB/Connection');
 
 app.listen(9898, () => {
-    console.log("Sever Start...");
+    console.log("Sever Start..............");
 });
 
+app.use('/', (req, res) => {
+    return res.send("backend start")
+})
+
 app.use('/api', require('./API/Crudapi'));
-// const api = require('./API/Crudapi');
